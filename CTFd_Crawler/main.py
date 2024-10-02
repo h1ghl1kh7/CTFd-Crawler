@@ -126,4 +126,3 @@ class CTFCrawler:
         logging.info("Download the challenges")
         for i in result:
             logging.info(f"{i} downloaded")
-        self.save()
