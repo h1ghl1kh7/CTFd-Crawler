@@ -30,6 +30,10 @@ class DownloadCrawler:
     def get_output(self):
         return self.output
 
+    def sanitize_filename(filename: str):
+        sanitized_name = re.sub(r'[\/:*?"<>|]', "", filename)
+        return sanitized_name
+
     def rearrange_download_que(self, data: List[Challenge]):
         result = []
         for i in data:
@@ -37,8 +41,8 @@ class DownloadCrawler:
                 result.append(
                     (
                         j,
-                        i.category.replace(" ", "_"),
-                        i.name.replace(" ", "_"),
+                        sanitize_filename(i.category),
+                        sanitize_filename(i.name),
                         i.description,
                     )
                 )
