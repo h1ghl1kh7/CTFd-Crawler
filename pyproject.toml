@@ -1,0 +1,15 @@
+[project]
+name = "CTFd-Crawler"
+version = "0.1.1"
+description = "CTFd-Crawler is a tool designed to efficiently manage and download CTF challenge files."
+readme = {file = "README.md", content-type = "text/markdown"}
+dependencies = ["requests", "tqdm", "typing", "dataclasses"]
+maintainers = [{name = "h1ghl1kh7", email = "h1ghl1kh7@gmail.com"}]
+license = {text = "MIT License"}
+
+[project.urls]
+Repository = "https://github.com/h1ghl1kh7/CTFd-Crawler"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
