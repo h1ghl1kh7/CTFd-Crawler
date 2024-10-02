@@ -3,15 +3,25 @@ import os
 
 from CTFd_Crawler import CTFCrawler
 
-BANNER = """
-   ******  ********** ********      **         ******                               **               
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+MAGENTA = "\033[95m"
+CYAN = "\033[96m"
+WHITE = "\033[97m"
+RESET = "\033[0m"
+
+BANNER = f"""
+{GREEN}   ******  ********** ********      **         ******                               **               
   **////**/////**/// /**/////      /**        **////**                             /**               
- **    //     /**    /**           /**       **    //  ******  ******   ***     ** /**  *****  ******
-/**           /**    /*******   ******      /**       //**//* //////** //**  * /** /** **///**//**//*
-/**           /**    /**////   **///**      /**        /** /   *******  /** ***/** /**/******* /** / 
-//**    **    /**    /**      /**  /**      //**    ** /**    **////**  /****/**** /**/**////  /**   
- //******     /**    /**      //******       //****** /***   //******** ***/ ///** ***//******/***   
-  //////      //     //        //////         //////  ///     //////// ///    /// ///  ////// ///    
+ **    //     /**    /**           /**       **    //  ******  ******   ***     ** /**  *****  ****** 
+{YELLOW}/**           /**    /*******   ******      /**       //**//* //////** //**  * /** /** **///**//**//* 
+/**           /**    /**////   **///**      /**        /** /   *******  /** ***/** /**/******* /** /  
+{CYAN}//**    **    /**    /**      /**  /**      //**    ** /**    **////**  /****/**** /**/**////  /**    
+ //******     /**    /**      //******       //****** /***   //******** ***/ ///** ***//******/***    
+{RED}  //////      //     //        //////         //////  ///     //////// ///    /// ///  ////// ///    
+{RESET}
 """
 
 
@@ -50,16 +60,16 @@ def main():
         if not os.path.exists(args.input_json):
             raise FileNotFoundError(f"No such file: {args.input_json}")
         work_directory = os.path.dirname(args.input_json)
-        print(f"CTF JSON file location: {args.input_json}")
+        print(f"{BLUE}CTF JSON file location: {args.input_json}{RESET}")
         print(
-            f"Current work directory (save all information in this directory): {work_directory}"
+            f"{BLUE}Current work directory (save all information in this directory): {work_directory}{RESET}"
         )
 
         crawler = CTFCrawler()
         crawler.load(args.input_json)
         challenges = crawler.get_challenges()
         crawler.download_challenges()
-        print(f"Downloaded {len(challenges)} challenges")
+        print(f"{GREEN}Downloaded {len(challenges)} challenges{RESET}")
 
     else:
         if not args.name:
@@ -69,24 +79,24 @@ def main():
         if not args.token:
             args.token = input("Enter CTFd token: ")
 
-        print("Current work directory:")
-        print(f"Work directory: {args.work_dir}")
+        print(f"{MAGENTA}Current work directory:{RESET}")
+        print(f"{MAGENTA}Work directory: {args.work_dir}{RESET}")
         change_work_dir = input("Do you want to change the output directory? (y/n): ")
         if change_work_dir.lower() == "y":
             args.work_dir = input("Enter new output directory: ")
 
-        print("Current settings:")
-        print(f"CTF name: {args.name}")
-        print(f"CTFd URL: {args.url}")
-        print(f"CTFd token: {args.token}")
-        print(f"Output directory: {args.work_dir}")
+        print(f"{YELLOW}Current settings:{RESET}")
+        print(f"{YELLOW}CTF name: {args.name}{RESET}")
+        print(f"{YELLOW}CTFd URL: {args.url}{RESET}")
+        print(f"{YELLOW}CTFd token: {args.token}{RESET}")
+        print(f"{YELLOW}Output directory: {args.work_dir}{RESET}")
 
         crawler = CTFCrawler()
         crawler.self_load(args.name, args.url, args.token, args.work_dir)
 
         challenges = crawler.get_challenges()
         crawler.download_challenges()
-        print(f"Downloaded {len(challenges)} challenges")
+        print(f"{GREEN}Downloaded {len(challenges)} challenges{RESET}")
 
 
 if __name__ == "__main__":
