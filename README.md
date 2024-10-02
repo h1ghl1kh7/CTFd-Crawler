@@ -93,12 +93,13 @@ It organizes downloads into categories, supports multi-threaded downloads for sp
 ## Usage
 
 ```python
-from ctfd_crawling import CTFCrawler
+from CTFd_Crawler import CTFCrawler
 
 crawler = CTFCrawler()
-crawler.load("./h4ckinggame.json") # load from h4ckinggame.json
-# crawler.self_load("h4ckinggame", "https://h4ckingga.me", "****************************************************************", "./h4ckinggame")
+# crawler.self_load("test_ctf", "https://ctfd.based/site", "****************************************************************", "./test_ctf")
+crawler.load("./test_ctf.json")
 print("load")
+print(crawler.important)
 res = crawler.get_challenges()
 print("get_challenges")
 crawler.download_challenges()
