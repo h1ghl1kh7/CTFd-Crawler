@@ -41,8 +41,8 @@ class DownloadCrawler:
                 result.append(
                     (
                         j,
-                        sanitize_filename(i.category),
-                        sanitize_filename(i.name),
+                        self.sanitize_filename(i.category),
+                        self.sanitize_filename(i.name),
                         i.description,
                     )
                 )
