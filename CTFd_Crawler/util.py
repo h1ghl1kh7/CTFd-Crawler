@@ -30,7 +30,7 @@ class DownloadCrawler:
     def get_output(self):
         return self.output
 
-    def sanitize_filename(filename: str):
+    def sanitize_filename(self, filename: str):
         sanitized_name = re.sub(r'[\/:*?"<>|]', "", filename)
         return sanitized_name
 
